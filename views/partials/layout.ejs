@@ -1,0 +1,29 @@
+
+<!doctype html>
+<html lang="es"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title><%= title || "BB6" %></title>
+<link rel="stylesheet" href="/style.css"/>
+</head><body>
+<div class="topbar">
+  <div class="brand">
+    <span class="alien">👽</span>
+    <a href="/" class="name">BB6</a>
+    <span class="badge">BETA</span>
+  </div>
+  <nav class="row">
+    <a href="/support" class="btn">Soport</a>
+    <% if (user) { %>
+      <span class="badge"><%= user.provider %> • <%= user.name %></span>
+      <a href="/logout" class="btn">Salir</a>
+      <% if (user.is_admin) { %><a href="/admin" class="btn primary">Admin</a><% } %>
+    <% } else { %>
+      <% if (providers.google) { %><a class="btn" href="/auth/google">Login Google</a><% } %>
+      <% if (providers.discord) { %><a class="btn" href="/auth/discord">Login Discord</a><% } %>
+      <% if (!providers.google && !providers.discord) { %><a class="btn" href="/auth/dev">Login de prueba</a><% } %>
+    <% } %>
+  </nav>
+</div>
+<div class="container"><%- body %></div>
+<div class="footer small">© <%= new Date().getFullYear() %> BB6 • Panel gamer</div>
+</body></html>

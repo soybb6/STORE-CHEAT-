@@ -1,0 +1,22 @@
+
+<% layout('partials/layout') -%>
+<h2>Soport</h2>
+<div class="row">
+  <form method="post" class="card" style="flex:1;min-width:280px">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>"/>
+    <label>Asunto</label>
+    <input class="input" name="subject" required/>
+    <label>Mensaje</label>
+    <textarea class="input" name="message" rows="5" required></textarea>
+    <button class="btn primary" style="margin-top:10px">Enviar</button>
+  </form>
+  <div class="card" style="flex:2">
+    <h3>Tus tickets</h3>
+    <table class="table">
+      <tr><th>ID</th><th>Asunto</th><th>Estado</th><th>Respuesta</th></tr>
+      <% tickets.forEach(t=>{ %>
+        <tr><td><%= t.id %></td><td><%= t.subject %></td><td><%= t.status %></td><td><%= t.reply || "" %></td></tr>
+      <% }) %>
+    </table>
+  </div>
+</div>

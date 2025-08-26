@@ -1,0 +1,36 @@
+
+<% layout('partials/layout') -%>
+<header class="hero">
+  <h1>Productos digitales sin precio — solo clave</h1>
+  <p>Elige una categoría. Para descargar tendrás que ingresar tu clave (un solo uso).</p>
+</header>
+<div class="catbar">
+  <a href="/category/roblox">Roblox</a>
+  <a href="/category/mta">MTA</a>
+  <a href="/category/spoofers">Spoofers</a>
+</div>
+<div class="grid">
+  <% products.forEach(p => { %>
+    <div class="card">
+      <div class="thumb">
+        <% if (p.image_url) { %><img src="<%= p.image_url %>" alt=""/><% } else { %>Sin imagen<% } %>
+      </div>
+      <h3><%= p.title %></h3>
+      <div class="small"><%= p.category.toUpperCase() %></div>
+      <p><%= p.description || "" %></p>
+      <div class="action">
+        <% if (!user) { %>
+          <a class="btn primary" href="/login">Entrar</a>
+        <% } else { %>
+          <form method="post" action="/download/<%= p.id %>">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>"/>
+            <% if (!user.licensed) { %>
+              <input name="key" class="input" placeholder="Clave (una vez)"/>
+            <% } %>
+            <button class="btn primary">Descargar</button>
+          </form>
+        <% } %>
+      </div>
+    </div>
+  <% }) %>
+</div>

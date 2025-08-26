@@ -1,0 +1,33 @@
+
+:root{--bg:#0b0b0d;--panel:#121317;--muted:#9aa0a6;--accent:#ff2d2d;--card:#191a1f;}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(1200px 600px at 20% 0%,#1b0d12 0%,#0b0b0d 40%),var(--bg);color:#eaecef;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial}
+a{color:#fff;text-decoration:none}
+.container{max-width:1100px;margin:0 auto;padding:24px}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;background:#0e0f13;border-bottom:1px solid #222}
+.brand{display:flex;gap:10px;align-items:center}
+.brand .alien{font-size:22px} .brand .name{font-weight:700;letter-spacing:.5px}
+.btn{padding:10px 16px;border-radius:12px;background:#222;color:#fff;border:1px solid #333;cursor:pointer}
+.btn.primary{background:var(--accent);border:none}
+.grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.card{background:var(--card);border:1px solid #262730;border-radius:16px;padding:16px}
+.card h3{margin:8px 0 6px 0}
+.card .thumb{height:160px;background:#0e0f13;border-radius:12px;border:1px dashed #333;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.card .thumb img{width:100%;height:100%;object-fit:cover}
+.footer{padding:32px;text-align:center;color:var(--muted)}
+.input, select, textarea{width:100%;padding:10px 12px;border-radius:10px;border:1px solid #333;background:#0f1116;color:#eaecef}
+.row{display:flex;gap:12px;flex-wrap:wrap}
+.badge{padding:4px 10px;border-radius:999px;background:#222;color:#ddd;border:1px solid #333;font-size:12px}
+.notice{padding:12px;border:1px solid #333;background:#101216;border-radius:10px;color:#ddd}
+.table{width:100%;border-collapse:collapse}
+.table th,.table td{border-bottom:1px solid #2b2c34;padding:8px 6px;text-align:left;font-size:14px}
+.hidden{display:none}
+header.hero{padding:60px 0;text-align:center}
+.hero h1{font-size:42px;margin:0 0 10px 0}
+.hero p{color:var(--muted)}
+.catbar{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 24px}
+.catbar a{padding:8px 12px;border:1px solid #333;border-radius:999px}
+.action{display:flex;gap:10px;align-items:center;margin-top:10px}
+hr{border:0;border-top:1px solid #2a2b32;margin:20px 0}
+.small{font-size:12px;color:var(--muted)}
+.alert{background:#231217;border:1px solid #4a1c23;color:#ffb3b9;padding:10px;border-radius:10px}
+.success{background:#14231a;border:1px solid #1f4a2c;color:#b3ffcb;padding:10px;border-radius:10px}

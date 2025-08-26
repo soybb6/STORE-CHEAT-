@@ -1,0 +1,25 @@
+
+<% layout('partials/layout') -%>
+<h2>Categoria: <%= category.toUpperCase() %></h2>
+<div class="grid">
+  <% products.forEach(p => { %>
+  <div class="card">
+    <div class="thumb"><% if (p.image_url) { %><img src="<%= p.image_url %>"/><% } else { %>Sin imagen<% } %></div>
+    <h3><%= p.title %></h3>
+    <p class="small"><%= p.description || "" %></p>
+    <div class="action">
+      <% if (!user) { %>
+        <a class="btn primary" href="/login">Entrar</a>
+      <% } else { %>
+        <form method="post" action="/download/<%= p.id %>">
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>"/>
+          <% if (!user.licensed) { %>
+            <input name="key" class="input" placeholder="Clave (una vez)"/>
+          <% } %>
+          <button class="btn primary">Descargar</button>
+        </form>
+      <% } %>
+    </div>
+  </div>
+  <% }) %>
+</div>

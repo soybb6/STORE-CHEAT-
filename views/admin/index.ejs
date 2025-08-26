@@ -1,0 +1,59 @@
+
+<% layout('partials/layout') -%>
+<h2>Admin</h2>
+<div class="grid">
+  <div class="card">
+    <h3>Usuarios</h3>
+    <table class="table">
+      <tr><th>ID</th><th>Nombre</th><th>Proveedor</th><th>Licencia</th></tr>
+      <% users.forEach(u=>{ %><tr><td><%= u.id %></td><td><%= u.name %></td><td><%= u.provider %></td><td><%= u.licensed ? "✔" : "—" %></td></tr><% }) %>
+    </table>
+  </div>
+  <div class="card">
+    <h3>Claves</h3>
+    <form method="post" action="/admin/keys/generate"><input type="hidden" name="_csrf" value="<%= csrfToken %>"/><button class="btn">Generar 30</button></form>
+    <table class="table">
+      <tr><th>Clave</th><th>Usada por</th></tr>
+      <% keys.forEach(k=>{ %><tr><td><%= k.code %></td><td><%= k.used_by || "" %></td></tr><% }) %>
+    </table>
+  </div>
+  <div class="card">
+    <h3>Productos</h3>
+    <form method="post" action="/admin/products/new">
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>"/>
+      <div class="row">
+        <select name="category" class="input">
+          <option>roblox</option><option>mta</option><option>spoofers</option>
+        </select>
+        <input class="input" name="title" placeholder="Título" required/>
+      </div>
+      <input class="input" name="image_url" placeholder="URL imagen (opcional)"/>
+      <input class="input" name="download_url" placeholder="URL descarga" required/>
+      <textarea class="input" name="description" placeholder="Descripción"></textarea>
+      <button class="btn primary" style="margin-top:8px">Crear</button>
+    </form>
+    <hr/>
+    <table class="table">
+      <tr><th>ID</th><th>Cat</th><th>Título</th><th>Descarga</th></tr>
+      <% products.forEach(p=>{ %><tr><td><%= p.id %></td><td><%= p.category %></td><td><%= p.title %></td><td class="small"><%= p.download_url %></td></tr><% }) %>
+    </table>
+  </div>
+  <div class="card">
+    <h3>Tickets</h3>
+    <table class="table">
+      <tr><th>ID</th><th>User</th><th>Asunto</th><th>Msg</th><th>Resp</th><th></th></tr>
+      <% tickets.forEach(t=>{ %>
+        <tr>
+          <td><%= t.id %></td><td><%= t.user_name %></td><td><%= t.subject %></td><td class="small"><%= t.message %></td>
+          <td class="small"><%= t.reply || "" %></td>
+          <td>
+            <form method="post" action="/admin/tickets/<%= t.id %>/reply">
+              <input type="hidden" name="_csrf" value="<%= csrfToken %>"/>
+              <input class="input" name="reply" placeholder="Responder..."/>
+            </form>
+          </td>
+        </tr>
+      <% }) %>
+    </table>
+  </div>
+</div>

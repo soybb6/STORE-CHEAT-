@@ -1,0 +1,9 @@
+
+<% layout('partials/layout') -%>
+<h2>Entrar</h2>
+<div class="row">
+  <% if (providers.google) { %><a class="btn" href="/auth/google">Google</a><% } %>
+  <% if (providers.discord) { %><a class="btn" href="/auth/discord">Discord</a><% } %>
+  <% if (!providers.google && !providers.discord) { %><a class="btn" href="/auth/dev">Login de prueba</a><% } %>
+</div>
+<p class="small">Si no ves Google o Discord, configura las claves en <code>.env</code>.</p>
